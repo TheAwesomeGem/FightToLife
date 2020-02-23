@@ -7,7 +7,6 @@
          * TODO: Have a similar system for Logger as well where Game can log message that it send to client to store/display.
          * TODO: Make use of interface for both of those systems.
          */
-
         public static void Main()
         {
             ConsoleApplication application = new ConsoleApplication();

@@ -12,7 +12,7 @@ namespace TheCardGameConsole
             var argumentCollection = arguments.Where(arg => arg != null).ToList();
             argumentCollection.RemoveAt(0);
 
-            return new InputData(command, argumentCollection, line);;
+            return new InputData(command, argumentCollection, line);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using System.Collections.Immutable;
+﻿using System;
 
 namespace TheCardGameLib
 {
-    public class GameImpl: Game
+    public class GameImpl : Game
     {
         public GameState State { get; private set; } = GameState.READY;
         public CommandFactory CommandFactory { get; }
@@ -15,7 +15,7 @@ namespace TheCardGameLib
 
         public void Progress()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void Shutdown()

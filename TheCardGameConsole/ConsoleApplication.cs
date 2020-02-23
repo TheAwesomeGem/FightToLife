@@ -8,7 +8,7 @@ namespace TheCardGameConsole
         private readonly Game Game;
         private readonly CommandParser CommandParser;
         private readonly InputReader InputReader;
-        
+
         public ConsoleApplication()
         {
             Game = GameDepdendencyFactory.CreateGame();
@@ -18,7 +18,7 @@ namespace TheCardGameConsole
 
         public void Run()
         {
-            while(Game.State != GameState.SHUTDOWN)
+            while (Game.State != GameState.SHUTDOWN)
             {
                 ProcessCommand();
             }
@@ -32,10 +32,10 @@ namespace TheCardGameConsole
             if (command == null)
             {
                 Console.WriteLine($"Unknown Command: {inputData.ToString()}");
-                
+
                 return;
             }
-            
+
             command.SetArguments(inputData.Arguments);
             command.Execute();
         }

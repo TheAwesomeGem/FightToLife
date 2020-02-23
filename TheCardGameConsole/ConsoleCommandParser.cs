@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TheCardGameLib;
+﻿using TheCardGameLib;
 
 namespace TheCardGameConsole
 {
