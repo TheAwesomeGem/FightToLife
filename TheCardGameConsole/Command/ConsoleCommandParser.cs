@@ -18,7 +18,7 @@ namespace TheCardGameConsole
 
             if (!isValidCommand || command == null)
             {
-                return null;
+                throw new UnknownCommandException(inputData);
             }
 
             return command;

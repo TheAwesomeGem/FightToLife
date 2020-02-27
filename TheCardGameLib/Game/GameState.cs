@@ -2,7 +2,7 @@
 {
     public enum GameState
     {
-        READY,
-        SHUTDOWN
+        MENU,
+        FIGHT,
     }
 }

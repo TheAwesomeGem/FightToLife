@@ -17,7 +17,7 @@ namespace TheCardGameLib
         private void Initialize()
         {
             var builder = ImmutableDictionary.CreateBuilder<string, GameCommand>();
-            builder.Add("shutdown", new ShutdownCommand(Game));
+            // builder.Add("shutdown", new ShutdownCommand(Game));
 
             GameCommands = builder.ToImmutable();
         }
