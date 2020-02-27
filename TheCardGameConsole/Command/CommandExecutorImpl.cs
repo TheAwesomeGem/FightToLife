@@ -3,20 +3,20 @@ using TheCardGameLib;
 
 namespace TheCardGameConsole
 {
-    public class CommandProcessorImpl : CommandProcessor
+    public class CommandExecutorImpl : CommandExecutor
     {
         private readonly InputReader InputReader;
         private readonly CommandParser CommandParser;
         private readonly Logger Logger;
 
-        public CommandProcessorImpl(InputReader inputReader, CommandParser commandParser, Logger logger)
+        public CommandExecutorImpl(InputReader inputReader, CommandParser commandParser, Logger logger)
         {
             InputReader = inputReader;
             CommandParser = commandParser;
             Logger = logger;
         }
 
-        public void Process()
+        public void Execute()
         {
             InputData inputData;
             GameCommand command;

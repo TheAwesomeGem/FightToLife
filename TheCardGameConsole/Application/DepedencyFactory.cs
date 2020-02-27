@@ -38,10 +38,10 @@ namespace TheCardGameConsole
             return new GeneralLogger(uiDisplay);
         }
 
-        public static CommandProcessor CreateCommandProcessor(InputReader inputReader, CommandParser commandParser,
+        public static CommandExecutor CreateCommandExecutor(InputReader inputReader, CommandParser commandParser,
             Logger logger)
         {
-            return new CommandProcessorImpl(inputReader, commandParser, logger);
+            return new CommandExecutorImpl(inputReader, commandParser, logger);
         }
     }
 }

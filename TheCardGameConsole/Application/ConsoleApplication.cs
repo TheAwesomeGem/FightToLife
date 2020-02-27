@@ -7,7 +7,7 @@ namespace TheCardGameConsole
     {
         private bool Running;
 
-        private CommandProcessor CommandProcessor;
+        private CommandExecutor CommandExecutor;
         
         public ConsoleApplication()
         {
@@ -20,7 +20,7 @@ namespace TheCardGameConsole
         {
             while (Running)
             {
-                CommandProcessor.Process();
+                CommandExecutor.Execute();
             }
         }
 
@@ -37,7 +37,7 @@ namespace TheCardGameConsole
             CommandParser commandParser = DepedencyFactory.CreateCommandParser(commandFactory);
             InputReader inputReader = DepedencyFactory.CreateInputReader();
             Logger logger = DepedencyFactory.CreateLogger(uiDisplay);
-            CommandProcessor = DepedencyFactory.CreateCommandProcessor(inputReader, commandParser, logger);
+            CommandExecutor = DepedencyFactory.CreateCommandExecutor(inputReader, commandParser, logger);
         }
     }
 }
