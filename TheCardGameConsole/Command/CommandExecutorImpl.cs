@@ -32,9 +32,8 @@ namespace TheCardGameConsole
                 
                 return;
             }
-
-            command.SetArguments(inputData.Arguments);
-            command.Execute();
+            
+            command.Execute(inputData.Arguments);
         }
     }
 }

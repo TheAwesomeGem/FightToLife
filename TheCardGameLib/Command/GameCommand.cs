@@ -4,7 +4,6 @@ namespace TheCardGameLib
 {
     public interface GameCommand
     {
-        void Execute();
-        void SetArguments(List<string> commandArgs);
+        void Execute(List<string> commandArgs);
     }
 }
