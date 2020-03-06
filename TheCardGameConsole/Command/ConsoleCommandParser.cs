@@ -2,26 +2,26 @@
 
 namespace TheCardGameConsole
 {
-    public class ConsoleCommandParser : BaseCommandParser
+    public class ConsoleCommandParser : CommandParser
     {
-        public ConsoleCommandParser(CommandFactory commandFactory)
-            : base(commandFactory)
+        private readonly InputReader InputReader;
+        private readonly CommandFactory CommandFactory;
+
+        public ConsoleCommandParser(InputReader inputReader, CommandFactory commandFactory)
         {
+            InputReader = inputReader;
+            CommandFactory = commandFactory;
         }
 
-        public override GameCommand GetCommandFromInputData(InputData inputData)
+        public GameCommand ParseCurrentCommand()
         {
-            GameCommand command = null;
-            bool isValidCommand = inputData.Command.Length > 1 &&
-                                  inputData.Command.StartsWith("/") &&
-                                  CommandFactory.GameCommands.TryGetValue(inputData.Command.Remove(0, 1), out command);
-
-            if (!isValidCommand || command == null)
-            {
-                throw new UnknownCommandException(inputData);
-            }
-
-            return command;
+            InputData inputData = InputReader.ReadCurrentInput();
+            string commandName = inputData.Command.StartsWith('/') ? 
+                                inputData.Command.Remove(0, 1) : inputData.Command;
+            GameCommand gameCommand = CommandFactory.GetCommandFromName(commandName);
+            gameCommand.PopulateArguments(inputData.Arguments);
+            
+            return gameCommand;
         }
     }
 }

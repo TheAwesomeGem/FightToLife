@@ -1,9 +1,7 @@
-﻿using System.Collections.Immutable;
-
-namespace TheCardGameLib
+﻿namespace TheCardGameLib
 {
     public interface CommandFactory
     {
-        IImmutableDictionary<string, GameCommand> GameCommands { get; }
+        GameCommand GetCommandFromName(string commandName);
     }
 }

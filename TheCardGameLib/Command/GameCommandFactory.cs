@@ -1,11 +1,11 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
 
 namespace TheCardGameLib
 {
     public class GameCommandFactory : CommandFactory
     {
-        public IImmutableDictionary<string, GameCommand> GameCommands { get; private set; }
         private readonly Game Game;
+        private Dictionary<string, GameCommand> GameCommands;
 
         public GameCommandFactory(Game game)
         {
@@ -16,10 +16,22 @@ namespace TheCardGameLib
 
         private void Initialize()
         {
-            var builder = ImmutableDictionary.CreateBuilder<string, GameCommand>();
-            // builder.Add("shutdown", new ShutdownCommand(Game));
+            GameCommands = new Dictionary<string, GameCommand>
+            {
+                //{"shutdown", new ShutdownCommand()}
+            };
+        }
 
-            GameCommands = builder.ToImmutable();
+        public GameCommand GetCommandFromName(string commandName)
+        {
+            GameCommand command = GameCommands.GetValueOrDefault(commandName, null);
+
+            if (command == null)
+            {
+                throw new UnknownCommandException(commandName);
+            }
+
+            return command;
         }
     }
 }

@@ -4,26 +4,22 @@ namespace TheCardGameConsole
 {
     public class CommandExecutorImpl : CommandExecutor
     {
-        private readonly InputReader InputReader;
         private readonly CommandParser CommandParser;
         private readonly Logger Logger;
 
-        public CommandExecutorImpl(InputReader inputReader, CommandParser commandParser, Logger logger)
+        public CommandExecutorImpl(CommandParser commandParser, Logger logger)
         {
-            InputReader = inputReader;
             CommandParser = commandParser;
             Logger = logger;
         }
 
         public void Execute()
         {
-            InputData inputData;
             GameCommand command;
 
             try
             {
-                inputData = InputReader.ReadCurrentInput();
-                command = CommandParser.GetCommandFromInputData(inputData);
+                command = CommandParser.ParseCurrentCommand();
             }
             catch (UnknownCommandException ex)
             {
@@ -32,7 +28,7 @@ namespace TheCardGameConsole
                 return;
             }
 
-            command.Execute(inputData.Arguments);
+            command.Execute();
         }
     }
 }

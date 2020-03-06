@@ -33,11 +33,11 @@ namespace TheCardGameConsole
             Game game = DepedencyFactory.CreateGame();
             UIOutput uiOutput = DepedencyFactory.CreateUIOutput();
             UIInput uiInput = DepedencyFactory.CreateUIInput();
-            CommandFactory commandFactory = DepedencyFactory.CreateCommandFactory(game);
-            CommandParser commandParser = DepedencyFactory.CreateCommandParser(commandFactory);
             InputReader inputReader = DepedencyFactory.CreateInputReader(uiInput);
+            CommandFactory commandFactory = DepedencyFactory.CreateCommandFactory(game);
+            CommandParser commandParser = DepedencyFactory.CreateCommandParser(inputReader, commandFactory);
             Logger logger = DepedencyFactory.CreateLogger(uiOutput);
-            CommandExecutor = DepedencyFactory.CreateCommandExecutor(inputReader, commandParser, logger);
+            CommandExecutor = DepedencyFactory.CreateCommandExecutor(commandParser, logger);
         }
     }
 }

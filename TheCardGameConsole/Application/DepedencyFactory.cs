@@ -33,9 +33,9 @@ namespace TheCardGameConsole
             return new GameCommandFactory(game);
         }
 
-        public static CommandParser CreateCommandParser(CommandFactory commandFactory)
+        public static CommandParser CreateCommandParser(InputReader inputReader, CommandFactory commandFactory)
         {
-            return new ConsoleCommandParser(commandFactory);
+            return new ConsoleCommandParser(inputReader, commandFactory);
         }
 
         public static Logger CreateLogger(UIOutput uiOutput)
@@ -43,10 +43,9 @@ namespace TheCardGameConsole
             return new GeneralLogger(uiOutput);
         }
 
-        public static CommandExecutor CreateCommandExecutor(InputReader inputReader, CommandParser commandParser,
-            Logger logger)
+        public static CommandExecutor CreateCommandExecutor(CommandParser commandParser, Logger logger)
         {
-            return new CommandExecutorImpl(inputReader, commandParser, logger);
+            return new CommandExecutorImpl(commandParser, logger);
         }
     }
 }
