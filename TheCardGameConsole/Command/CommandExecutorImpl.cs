@@ -1,4 +1,3 @@
-using System;
 using TheCardGameLib;
 
 namespace TheCardGameConsole
@@ -20,19 +19,19 @@ namespace TheCardGameConsole
         {
             InputData inputData;
             GameCommand command;
-            
+
             try
             {
-                inputData = InputReader.GetInputDataFromLine(Console.ReadLine());
+                inputData = InputReader.ReadCurrentInput();
                 command = CommandParser.GetCommandFromInputData(inputData);
             }
             catch (UnknownCommandException ex)
             {
                 Logger.LogWarning(ex.Message);
-                
+
                 return;
             }
-            
+
             command.Execute(inputData.Arguments);
         }
     }

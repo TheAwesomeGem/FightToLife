@@ -1,5 +1,4 @@
-﻿using System;
-using TheCardGameLib;
+﻿using TheCardGameLib;
 
 namespace TheCardGameConsole
 {
@@ -8,7 +7,7 @@ namespace TheCardGameConsole
         private bool Running;
 
         private CommandExecutor CommandExecutor;
-        
+
         public ConsoleApplication()
         {
             Running = true;
@@ -32,11 +31,12 @@ namespace TheCardGameConsole
         private void InitializeDependencies()
         {
             Game game = DepedencyFactory.CreateGame();
-            UIDisplay uiDisplay = DepedencyFactory.CreateUiDisplay();
+            UIOutput uiOutput = DepedencyFactory.CreateUIOutput();
+            UIInput uiInput = DepedencyFactory.CreateUIInput();
             CommandFactory commandFactory = DepedencyFactory.CreateCommandFactory(game);
             CommandParser commandParser = DepedencyFactory.CreateCommandParser(commandFactory);
-            InputReader inputReader = DepedencyFactory.CreateInputReader();
-            Logger logger = DepedencyFactory.CreateLogger(uiDisplay);
+            InputReader inputReader = DepedencyFactory.CreateInputReader(uiInput);
+            Logger logger = DepedencyFactory.CreateLogger(uiOutput);
             CommandExecutor = DepedencyFactory.CreateCommandExecutor(inputReader, commandParser, logger);
         }
     }

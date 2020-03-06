@@ -2,6 +2,6 @@
 {
     public interface InputReader
     {
-        InputData GetInputDataFromLine(string line);
+        InputData ReadCurrentInput();
     }
 }

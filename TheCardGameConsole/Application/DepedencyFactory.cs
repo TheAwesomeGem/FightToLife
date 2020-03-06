@@ -13,14 +13,19 @@ namespace TheCardGameConsole
             return new GameImpl();
         }
 
-        public static UIDisplay CreateUiDisplay()
+        public static UIOutput CreateUIOutput()
         {
-            return new ConsoleUIDisplay();
+            return new ConsoleUIOutput();
         }
 
-        public static InputReader CreateInputReader()
+        public static UIInput CreateUIInput()
         {
-            return new ConsoleInputReader();
+            return new ConsoleUIInput();
+        }
+
+        public static InputReader CreateInputReader(UIInput uiInput)
+        {
+            return new ConsoleInputReader(uiInput);
         }
 
         public static CommandFactory CreateCommandFactory(Game game)
@@ -33,9 +38,9 @@ namespace TheCardGameConsole
             return new ConsoleCommandParser(commandFactory);
         }
 
-        public static Logger CreateLogger(UIDisplay uiDisplay)
+        public static Logger CreateLogger(UIOutput uiOutput)
         {
-            return new GeneralLogger(uiDisplay);
+            return new GeneralLogger(uiOutput);
         }
 
         public static CommandExecutor CreateCommandExecutor(InputReader inputReader, CommandParser commandParser,

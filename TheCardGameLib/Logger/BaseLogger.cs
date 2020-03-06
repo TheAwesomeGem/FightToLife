@@ -5,12 +5,12 @@ namespace TheCardGameConsole
     public abstract class BaseLogger : Logger
     {
         private readonly Logger.Type Type;
-        private readonly UIDisplay UIDisplay;
+        private readonly UIOutput UIOutput;
 
-        protected BaseLogger(Logger.Type type, UIDisplay uiDisplay)
+        protected BaseLogger(Logger.Type type, UIOutput uiOutput)
         {
             Type = type;
-            UIDisplay = uiDisplay;
+            UIOutput = uiOutput;
         }
 
         public void LogInfo(string info, string tag = "")
@@ -21,7 +21,7 @@ namespace TheCardGameConsole
             }
 
             string prefix = GetPrefix(tag, "INFO");
-            UIDisplay.DisplayText($"{prefix} {info}", Color.Green);
+            UIOutput.OutputText($"{prefix} {info}", Color.Green);
         }
 
         public void LogWarning(string warning, string tag = "")
@@ -32,14 +32,13 @@ namespace TheCardGameConsole
             }
 
             string prefix = GetPrefix(tag, "WARNING");
-            UIDisplay.DisplayText($"{prefix} {warning}", Color.Orange);
+            UIOutput.OutputText($"{prefix} {warning}", Color.Orange);
         }
 
         public void LogError(string error, string tag = "")
         {
             string prefix = GetPrefix(tag, "ERROR");
-
-            UIDisplay.DisplayText($"{prefix} {error}", Color.Red);
+            UIOutput.OutputText($"{prefix} {error}", Color.Red);
         }
 
         private string GetPrefix(string tag, string defaultTag)

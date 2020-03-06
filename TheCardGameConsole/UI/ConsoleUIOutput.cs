@@ -3,9 +3,9 @@ using Colorful;
 
 namespace TheCardGameConsole
 {
-    public class ConsoleUIDisplay : UIDisplay
+    public class ConsoleUIOutput : UIOutput
     {
-        public void DisplayText(string text, Color color)
+        public void OutputText(string text, Color color)
         {
             Console.WriteLine(text, color);
         }
