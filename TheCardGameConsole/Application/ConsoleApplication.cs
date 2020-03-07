@@ -38,6 +38,7 @@ namespace TheCardGameConsole
             CommandParser commandParser = DepedencyFactory.CreateCommandParser(inputReader, commandFactory);
             Logger logger = DepedencyFactory.CreateLogger(uiOutput);
             CommandExecutor = DepedencyFactory.CreateCommandExecutor(commandParser, logger);
+            DepedencyFactory.CreateGameEventHandler(this, game);
         }
     }
 }

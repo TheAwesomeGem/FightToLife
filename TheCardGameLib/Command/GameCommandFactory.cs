@@ -18,7 +18,7 @@ namespace TheCardGameLib
         {
             GameCommands = new Dictionary<string, GameCommand>
             {
-                //{"shutdown", new ShutdownCommand()}
+                {"shutdown", new ShutdownCommand(Game)}
             };
         }
 

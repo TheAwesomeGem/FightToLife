@@ -47,5 +47,10 @@ namespace TheCardGameConsole
         {
             return new CommandExecutorImpl(commandParser, logger);
         }
+
+        public static GameEventHandler CreateGameEventHandler(Application application, Game game)
+        {
+            return new GameEventHandlerImpl(application, game);
+        }
     }
 }
