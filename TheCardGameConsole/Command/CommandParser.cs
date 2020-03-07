@@ -1,9 +1,7 @@
-﻿using TheCardGameLib;
-
-namespace TheCardGameConsole
+﻿namespace TheCardGameConsole
 {
     public interface CommandParser
     {
-        GameCommand ParseCurrentCommand();
+        CommandData ParseCurrentCommand();
     }
 }

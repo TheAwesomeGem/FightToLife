@@ -13,15 +13,18 @@ namespace TheCardGameConsole
             CommandFactory = commandFactory;
         }
 
-        public GameCommand ParseCurrentCommand()
+        public CommandData ParseCurrentCommand()
         {
             InputData inputData = InputReader.ReadCurrentInput();
-            string commandName = inputData.Command.StartsWith('/') ? 
-                                inputData.Command.Remove(0, 1) : inputData.Command;
+            string commandName = FetchCommandName(inputData.Command);
             GameCommand gameCommand = CommandFactory.GetCommandFromName(commandName);
-            gameCommand.PopulateArguments(inputData.Arguments);
-            
-            return gameCommand;
+
+            return new CommandData(gameCommand, inputData.Arguments);
+        }
+
+        private string FetchCommandName(string rawCommand)
+        {
+            return rawCommand.StartsWith('/') ? rawCommand.Remove(0, 1) : rawCommand;
         }
     }
 }

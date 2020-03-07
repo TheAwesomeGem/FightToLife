@@ -15,11 +15,11 @@ namespace TheCardGameConsole
 
         public void Execute()
         {
-            GameCommand command;
+            CommandData commandData;
 
             try
             {
-                command = CommandParser.ParseCurrentCommand();
+                commandData = CommandParser.ParseCurrentCommand();
             }
             catch (UnknownCommandException ex)
             {
@@ -28,7 +28,7 @@ namespace TheCardGameConsole
                 return;
             }
 
-            command.Execute();
+            commandData.GameCommand.Execute(commandData.Arguments);
         }
     }
 }
