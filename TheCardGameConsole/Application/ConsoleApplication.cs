@@ -5,7 +5,6 @@ namespace TheCardGameConsole
     public class ConsoleApplication : Application
     {
         private bool Running;
-
         private CommandExecutor CommandExecutor;
 
         public ConsoleApplication()
