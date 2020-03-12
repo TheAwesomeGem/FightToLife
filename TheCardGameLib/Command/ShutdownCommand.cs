@@ -13,7 +13,7 @@ namespace TheCardGameLib
 
         public void Execute(List<string> commandArgs)
         {
-            Game.Shutdown();
+            Game.Quit();
         }
     }
 }

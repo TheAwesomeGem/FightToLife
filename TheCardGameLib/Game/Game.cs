@@ -4,10 +4,10 @@ namespace TheCardGameLib
 {
     public interface Game
     {
-        public event EventHandler ShutdownEvent;
-        public GameState State { get; }
+        public event EventHandler<GameState> StateChangeEvent;
 
         void Progress();
-        void Shutdown();
+        void Quit();
+        void SwitchState(GameState newState);
     }
 }

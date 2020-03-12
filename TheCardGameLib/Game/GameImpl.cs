@@ -4,12 +4,13 @@ namespace TheCardGameLib
 {
     public class GameImpl : Game
     {
-        public event EventHandler ShutdownEvent;
-        public GameState State { get; private set; } = GameState.MENU;
+        public event EventHandler<GameState> StateChangeEvent;
+
+        private GameState State;
 
         public GameImpl()
         {
-            
+            State = GameState.MENU;
         }
 
         public void Progress()
@@ -17,9 +18,16 @@ namespace TheCardGameLib
             throw new NotImplementedException();
         }
 
-        public void Shutdown()
+        public void Quit()
         {
-            ShutdownEvent?.Invoke(this, null);
+            SwitchState(GameState.QUIT);
+        }
+
+        public void SwitchState(GameState newState)
+        {
+            State = newState;
+
+            StateChangeEvent?.Invoke(this, State);
         }
     }
 }
