@@ -2,7 +2,7 @@ using System;
 
 namespace TheCardGameConsole
 {
-    public class ConsoleUIInput : UIInput
+    public class UIInputImpl : UIInput
     {
         public string ReadLine()
         {

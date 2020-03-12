@@ -1,25 +1,15 @@
 ﻿using System.Collections.Generic;
+using TheCardGameLib;
 
-namespace TheCardGameLib
+namespace TheCardGameConsole
 {
-    public class GameCommandFactory : CommandFactory
+    public class CommandMapperImpl : CommandMapper
     {
-        private readonly Game Game;
         private Dictionary<string, GameCommand> GameCommands;
 
-        public GameCommandFactory(Game game)
+        public CommandMapperImpl()
         {
-            Game = game;
-
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            GameCommands = new Dictionary<string, GameCommand>
-            {
-                {"shutdown", new ShutdownCommand(Game)}
-            };
+            MapCommands();
         }
 
         public GameCommand GetCommandFromName(string commandName)
@@ -32,6 +22,14 @@ namespace TheCardGameLib
             }
 
             return command;
+        }
+
+        private void MapCommands()
+        {
+            GameCommands = new Dictionary<string, GameCommand>
+            {
+                {"shutdown", GameCommandFactory.GetShutdownCommand()}
+            };
         }
     }
 }

@@ -3,7 +3,7 @@ using Colorful;
 
 namespace TheCardGameConsole
 {
-    public class ConsoleUIOutput : UIOutput
+    public class UIOutputImpl : UIOutput
     {
         public void OutputText(string text, Color color)
         {

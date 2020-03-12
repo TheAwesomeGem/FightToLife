@@ -4,5 +4,6 @@
     {
         MENU,
         FIGHT,
+        QUIT,
     }
 }

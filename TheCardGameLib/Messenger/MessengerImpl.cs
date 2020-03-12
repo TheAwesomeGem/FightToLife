@@ -5,7 +5,7 @@ namespace TheCardGameLib
 {
     public class MessengerImpl : Messenger
     {
-        protected readonly UIOutput UIOutput;
+        private readonly UIOutput UIOutput;
 
         public MessengerImpl(UIOutput uiOutput)
         {

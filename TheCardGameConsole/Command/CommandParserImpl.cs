@@ -2,22 +2,22 @@
 
 namespace TheCardGameConsole
 {
-    public class ConsoleCommandParser : CommandParser
+    public class CommandParserImpl : CommandParser
     {
         private readonly InputReader InputReader;
-        private readonly CommandFactory CommandFactory;
+        private readonly CommandMapper CommandMapper;
 
-        public ConsoleCommandParser(InputReader inputReader, CommandFactory commandFactory)
+        public CommandParserImpl(InputReader inputReader, CommandMapper commandMapper)
         {
             InputReader = inputReader;
-            CommandFactory = commandFactory;
+            CommandMapper = commandMapper;
         }
 
         public CommandData ParseCurrentCommand()
         {
             InputData inputData = InputReader.ReadCurrentInput();
             string commandName = FetchCommandName(inputData.Command);
-            GameCommand gameCommand = CommandFactory.GetCommandFromName(commandName);
+            GameCommand gameCommand = CommandMapper.GetCommandFromName(commandName);
 
             return new CommandData(gameCommand, inputData.Arguments);
         }

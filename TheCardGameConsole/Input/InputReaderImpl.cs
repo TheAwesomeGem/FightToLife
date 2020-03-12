@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace TheCardGameConsole
 {
-    public class ConsoleInputReader : InputReader
+    public class InputReaderImpl : InputReader
     {
         private readonly UIInput UIInput;
 
-        public ConsoleInputReader(UIInput uiInput)
+        public InputReaderImpl(UIInput uiInput)
         {
             UIInput = uiInput;
         }
