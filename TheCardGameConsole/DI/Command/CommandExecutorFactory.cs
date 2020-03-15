@@ -2,11 +2,9 @@ namespace TheCardGameConsole
 {
     public static class CommandExecutorFactory
     {
-        private static CommandExecutor Instance;
-
         public static CommandExecutor Get()
         {
-            return Instance ??= new CommandExecutorImpl(
+            return new CommandExecutorImpl(
                 CommandParserFactory.Get(),
                 LoggerFactory.Get()
             );

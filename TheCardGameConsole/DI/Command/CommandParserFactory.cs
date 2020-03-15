@@ -2,11 +2,9 @@ namespace TheCardGameConsole
 {
     public static class CommandParserFactory
     {
-        private static CommandParser Instance;
-
         public static CommandParser Get()
         {
-            return Instance ??= new CommandParserImpl(
+            return new CommandParserImpl(
                 InputReaderFactory.Get(),
                 CommandMapperFactory.Get()
             );
