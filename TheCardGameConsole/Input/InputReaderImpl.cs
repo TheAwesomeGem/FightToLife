@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace TheCardGameConsole
 {
@@ -15,12 +14,10 @@ namespace TheCardGameConsole
         public InputData ReadCurrentInput()
         {
             string line = UIInput.ReadLine();
-            string[] arguments = line?.Split(' ') ?? Array.Empty<string>();
+            List<string> arguments = CommandUtil.SplitLineToArgs(line, ' ');
             string command = arguments[0];
-            var argumentCollection = arguments.Where(arg => arg != null).ToList();
-            argumentCollection.RemoveAt(0);
 
-            return new InputData(command, argumentCollection, line);
+            return new InputData(command, arguments, line);
         }
     }
 }

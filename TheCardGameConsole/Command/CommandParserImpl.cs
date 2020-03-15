@@ -16,15 +16,10 @@ namespace TheCardGameConsole
         public CommandData ParseCurrentCommand()
         {
             InputData inputData = InputReader.ReadCurrentInput();
-            string commandName = FetchCommandName(inputData.Command);
+            string commandName = CommandUtil.ConvertRawCommand(inputData.Command);
             GameCommand gameCommand = CommandMapper.GetCommandFromName(commandName);
 
             return new CommandData(gameCommand, inputData.Arguments);
-        }
-
-        private string FetchCommandName(string rawCommand)
-        {
-            return rawCommand.StartsWith('/') ? rawCommand.Remove(0, 1) : rawCommand;
         }
     }
 }
