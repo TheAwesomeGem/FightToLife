@@ -1,3 +1,5 @@
+using TheCardGameLib;
+
 namespace TheCardGameConsole
 {
     public static class ApplicationFactory
@@ -7,7 +9,7 @@ namespace TheCardGameConsole
         public static Application Get()
         {
             return Instance ??= new ApplicationImpl(
-                GameFactory.Get(),
+                ApplicationRunnerFactory.Get(),
                 CommandExecutorFactory.Get()
             );
         }

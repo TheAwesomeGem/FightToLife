@@ -1,4 +1,6 @@
-﻿namespace TheCardGameConsole
+﻿using TheCardGameLib;
+
+namespace TheCardGameConsole
 {
     internal static class Primary
     {

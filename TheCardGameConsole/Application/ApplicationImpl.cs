@@ -4,24 +4,18 @@ namespace TheCardGameConsole
 {
     public class ApplicationImpl : Application
     {
-        private readonly Game Game;
+        private readonly ApplicationRunner ApplicationRunner;
         private readonly CommandExecutor CommandExecutor;
 
-        private bool Running;
-
-        public ApplicationImpl(Game game, CommandExecutor commandExecutor)
+        public ApplicationImpl(ApplicationRunner applicationRunner, CommandExecutor commandExecutor)
         {
-            Game = game;
+            ApplicationRunner = applicationRunner;
             CommandExecutor = commandExecutor;
-
-            Running = true;
-
-            InitEvent();
         }
 
         public void Run()
         {
-            while (Running)
+            while (ApplicationRunner.CanRun())
             {
                 CommandExecutor.Execute();
             }
@@ -29,18 +23,7 @@ namespace TheCardGameConsole
 
         public void Shutdown()
         {
-            Running = false;
-        }
-
-        private void InitEvent()
-        {
-            Game.StateChangeEvent += (_, state) =>
-            {
-                if (GameState.QUIT == state)
-                {
-                    Shutdown();
-                }
-            };
+            ApplicationRunner.StopRunning();
         }
     }
 }

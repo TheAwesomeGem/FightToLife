@@ -1,4 +1,4 @@
-namespace TheCardGameConsole
+namespace TheCardGameLib
 {
     public interface Application
     {

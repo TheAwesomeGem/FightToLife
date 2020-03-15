@@ -4,16 +4,16 @@ namespace TheCardGameLib
 {
     public class ShutdownCommand : GameCommand
     {
-        private readonly Game Game;
+        private readonly Application Application;
 
-        public ShutdownCommand(Game game)
+        public ShutdownCommand(Application application)
         {
-            Game = game;
+            Application = application;
         }
 
         public void Execute(List<string> commandArgs)
         {
-            Game.Quit();
+            Application.Shutdown();
         }
     }
 }

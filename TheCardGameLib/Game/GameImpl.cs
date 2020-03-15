@@ -4,9 +4,7 @@ namespace TheCardGameLib
 {
     public class GameImpl : Game
     {
-        public event EventHandler<GameState> StateChangeEvent;
-
-        private GameState State;
+        public GameState State { get; private set; }
 
         public GameImpl()
         {
@@ -18,16 +16,9 @@ namespace TheCardGameLib
             throw new NotImplementedException();
         }
 
-        public void Quit()
-        {
-            SwitchState(GameState.QUIT);
-        }
-
         public void SwitchState(GameState newState)
         {
             State = newState;
-
-            StateChangeEvent?.Invoke(this, State);
         }
     }
 }

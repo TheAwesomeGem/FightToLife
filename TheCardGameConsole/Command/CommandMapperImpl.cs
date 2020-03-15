@@ -7,13 +7,13 @@ namespace TheCardGameConsole
     {
         private Dictionary<string, GameCommand> GameCommands;
 
-        public CommandMapperImpl()
-        {
-            MapCommands();
-        }
-
         public GameCommand GetCommandFromName(string commandName)
         {
+            if (GameCommands == null)
+            {
+                MapCommands();
+            }
+
             GameCommand command = GameCommands.GetValueOrDefault(commandName, null);
 
             if (command == null)

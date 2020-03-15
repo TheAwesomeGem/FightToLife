@@ -6,7 +6,7 @@ namespace TheCardGameConsole
     {
         public static GameCommand GetShutdownCommand()
         {
-            return new ShutdownCommand(GameFactory.Get());
+            return new ShutdownCommand(ApplicationFactory.Get());
         }
     }
 }

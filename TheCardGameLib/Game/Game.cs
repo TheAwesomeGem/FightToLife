@@ -1,13 +1,10 @@
-﻿using System;
-
-namespace TheCardGameLib
+﻿namespace TheCardGameLib
 {
     public interface Game
     {
-        public event EventHandler<GameState> StateChangeEvent;
+        public GameState State { get; }
 
         void Progress();
-        void Quit();
         void SwitchState(GameState newState);
     }
 }
