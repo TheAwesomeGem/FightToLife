@@ -13,7 +13,7 @@ namespace TheCardGameConsole
 
         public static List<string> SplitLineToArgs(string line, char seperator)
         {
-            var rawArgs = line?.Split(' ') ?? Array.Empty<string>();
+            var rawArgs = line?.Split(seperator) ?? Array.Empty<string>();
             
             return rawArgs.Where(arg => arg != null).ToList();
         }
