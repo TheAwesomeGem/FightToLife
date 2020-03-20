@@ -18,8 +18,4 @@
       <ProjectReference Include="..\TheCardGameLib\TheCardGameLib.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Util" />
-    </ItemGroup>
-
 </Project>

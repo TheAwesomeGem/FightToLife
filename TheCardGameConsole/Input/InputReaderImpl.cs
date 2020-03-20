@@ -17,7 +17,7 @@ namespace TheCardGameConsole
             List<string> arguments = CommandUtil.SplitLineToArgs(line, ' ');
             string command = arguments[0];
 
-            return new InputData(command, arguments, line);
+            return new InputData(command, arguments);
         }
     }
 }

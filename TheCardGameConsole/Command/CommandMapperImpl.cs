@@ -5,13 +5,19 @@ namespace TheCardGameConsole
 {
     public class CommandMapperImpl : CommandMapper
     {
+        private readonly CommandGenerator CommandGenerator;
         private Dictionary<string, GameCommand> GameCommands;
+
+        public CommandMapperImpl(CommandGenerator commandGenerator)
+        {
+            CommandGenerator = commandGenerator;
+        }
 
         public GameCommand GetCommandFromName(string commandName)
         {
             if (GameCommands == null)
             {
-                MapCommands();
+                GameCommands = CommandGenerator.GenerateCommands();
             }
 
             GameCommand command = GameCommands.GetValueOrDefault(commandName, null);
@@ -22,14 +28,6 @@ namespace TheCardGameConsole
             }
 
             return command;
-        }
-
-        private void MapCommands()
-        {
-            GameCommands = new Dictionary<string, GameCommand>
-            {
-                {"shutdown", GameCommandFactory.GetShutdownCommand()}
-            };
         }
     }
 }

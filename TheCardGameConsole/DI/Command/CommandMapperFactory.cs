@@ -6,7 +6,7 @@ namespace TheCardGameConsole
 
         public static CommandMapper Get()
         {
-            return Instance ??= new CommandMapperImpl();
+            return Instance ??= new CommandMapperImpl(CommandGeneratorFactory.Get());
         }
     }
 }
