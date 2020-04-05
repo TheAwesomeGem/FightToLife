@@ -5,19 +5,19 @@ namespace TheCardGameConsole
     public class CommandParserImpl : CommandParser
     {
         private readonly InputReader InputReader;
-        private readonly CommandMapper CommandMapper;
+        private readonly CommandFetcher CommandFetcher;
 
-        public CommandParserImpl(InputReader inputReader, CommandMapper commandMapper)
+        public CommandParserImpl(InputReader inputReader, CommandFetcher commandFetcher)
         {
             InputReader = inputReader;
-            CommandMapper = commandMapper;
+            CommandFetcher = commandFetcher;
         }
 
         public CommandData ParseCurrentCommand()
         {
             InputData inputData = InputReader.ReadCurrentInput();
             string commandName = CommandUtil.ConvertRawCommand(inputData.Command);
-            GameCommand gameCommand = CommandMapper.GetCommandFromName(commandName);
+            GameCommand gameCommand = CommandFetcher.FetchCommandFromName(commandName);
 
             return new CommandData(gameCommand, inputData.Arguments);
         }

@@ -55,17 +55,5 @@ namespace TheCardGameTest
             // Verify: That CommandExecutor Executes.
             CommandExecutorMock.Verify(executor => executor.Execute(), Times.Never);
         }
-
-        [Test]
-        public void Shutdown_WhenCalled_RunnerShutdown()
-        {
-            // Given: A valid running Application
-            
-            // When: Shutdown is called
-            Application.Shutdown();
-            
-            // Verify: That Runner Stops Running.
-            ApplicationRunnerMock.Verify(runner => runner.StopRunning(), Times.Once);
-        }
     }
 }

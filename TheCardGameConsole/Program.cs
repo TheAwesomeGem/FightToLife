@@ -1,4 +1,5 @@
-﻿using TheCardGameLib;
+﻿using Autofac;
+using TheCardGameConsole.DI;
 
 namespace TheCardGameConsole
 {
@@ -10,7 +11,13 @@ namespace TheCardGameConsole
          */
         public static void Main()
         {
-            Application application = ApplicationFactory.Get();
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<GameModule>();
+            builder.RegisterModule<ApplicationModule>();
+            builder.RegisterModule<CommandModule>();
+            var container = builder.Build();
+
+            Application application = container.Resolve<Application>();
             application.Run();
         }
     }

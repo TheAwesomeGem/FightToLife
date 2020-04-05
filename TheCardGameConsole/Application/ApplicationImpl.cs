@@ -20,10 +20,5 @@ namespace TheCardGameConsole
                 CommandExecutor.Execute();
             }
         }
-
-        public void Shutdown()
-        {
-            ApplicationRunner.StopRunning();
-        }
     }
 }
