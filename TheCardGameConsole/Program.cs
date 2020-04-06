@@ -12,8 +12,8 @@ namespace TheCardGameConsole
         {
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyModules(typeof(Primary).Assembly);
-            var container = builder.Build();
-
+            using var container = builder.Build();
+            
             Application application = container.Resolve<Application>();
             application.Run();
         }
