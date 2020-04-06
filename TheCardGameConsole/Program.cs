@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using TheCardGameConsole.DI;
 
 namespace TheCardGameConsole
 {
@@ -12,9 +11,7 @@ namespace TheCardGameConsole
         public static void Main()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterModule<GameModule>();
-            builder.RegisterModule<ApplicationModule>();
-            builder.RegisterModule<CommandModule>();
+            builder.RegisterAssemblyModules(typeof(Primary).Assembly);
             var container = builder.Build();
 
             Application application = container.Resolve<Application>();
