@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TheCardGameLib
+﻿namespace TheCardGameLib
 {
     public class GameImpl : Game
     {
@@ -13,7 +11,6 @@ namespace TheCardGameLib
 
         public void Progress()
         {
-            throw new NotImplementedException();
         }
 
         public void SwitchState(GameState newState)
