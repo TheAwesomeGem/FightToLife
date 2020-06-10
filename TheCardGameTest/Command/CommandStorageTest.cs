@@ -6,16 +6,16 @@ using TheCardGameLib;
 namespace TheCardGameTest
 {
     [TestFixture]
-    public class CommandFetcherTest
+    public class CommandStorageTest
     {
         private Mock<GameCommand> MockCommand;
-        private CommandFetcher CommandFetcher;
+        private CommandStorage CommandStorage;
 
         [SetUp]
         public void Setup()
         {
             MockCommand = new Mock<GameCommand>();
-            CommandFetcher = new CommandFetcherImpl(
+            CommandStorage = new CommandStorageImpl(
                 new[] {MockCommand.Object}
             );
         }
@@ -28,7 +28,7 @@ namespace TheCardGameTest
 
             // When: GetCommandFromName is called
             // Verify: That the UnknownCommandException is properly being thrown
-            Assert.Throws<UnknownCommandException>(() => CommandFetcher.FetchCommandFromName(command));
+            Assert.Throws<UnknownCommandException>(() => CommandStorage.FetchCommandFromName(command));
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace TheCardGameTest
             MockCommand.Setup(cmd => cmd.HasInput(command)).Returns(true);
 
             // When: GetCommandFromName is called
-            GameCommand gameCommand = CommandFetcher.FetchCommandFromName(command);
+            GameCommand gameCommand = CommandStorage.FetchCommandFromName(command);
 
             // Verify: That the gameCommand is valid
             Assert.That(gameCommand, Is.EqualTo(MockCommand.Object));

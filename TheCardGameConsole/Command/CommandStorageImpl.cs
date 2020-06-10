@@ -4,11 +4,11 @@ using TheCardGameLib;
 
 namespace TheCardGameConsole
 {
-    public class CommandFetcherImpl : CommandFetcher
+    public class CommandStorageImpl : CommandStorage
     {
         private readonly IEnumerable<GameCommand> GameCommands;
 
-        public CommandFetcherImpl(IEnumerable<GameCommand> gameCommands)
+        public CommandStorageImpl(IEnumerable<GameCommand> gameCommands)
         {
             GameCommands = gameCommands;
         }

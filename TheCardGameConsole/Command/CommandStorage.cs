@@ -1,6 +1,6 @@
 ﻿namespace TheCardGameConsole
 {
-    public interface CommandFetcher
+    public interface CommandStorage
     {
         GameCommand FetchCommandFromName(string name);
     }

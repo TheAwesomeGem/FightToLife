@@ -9,27 +9,32 @@ namespace TheCardGameTest
     [TestFixture]
     public class CommandExecutorTest
     {
-        private Mock<CommandParser> CommandParserMock;
+        private Mock<UIInput> InputMock;
+        private Mock<CommandStorage> CommandStorageMock;
         private Mock<Logger> LoggerMock;
         private CommandExecutor CommandExecutor;
 
         [SetUp]
         public void Setup()
         {
-            CommandParserMock = new Mock<CommandParser>();
+            InputMock = new Mock<UIInput>();
+            CommandStorageMock = new Mock<CommandStorage>();
             LoggerMock = new Mock<Logger>();
             CommandExecutor = new CommandExecutorImpl(
-                CommandParserMock.Object,
+                InputMock.Object,
+                CommandStorageMock.Object,
                 LoggerMock.Object
             );
         }
 
         [Test]
-        public void Execute_WithInvalidData_LogThrownException()
+        public void Execute_WithUnknownCommand_LogUnknownCommandException()
         {
             // Given: An exception of Invalid Command Data 
-            var exception = new UnknownCommandException("invalid");
-            CommandParserMock.Setup(parser => parser.ParseCurrentCommand())
+            const string cmd = "unknown";
+            var exception = new UnknownCommandException(cmd);
+            InputMock.Setup(input => input.ReadLine()).Returns($"/{cmd}");
+            CommandStorageMock.Setup(parser => parser.FetchCommandFromName(cmd))
                 .Throws(exception);
 
             // When: Execute is called
@@ -37,25 +42,6 @@ namespace TheCardGameTest
 
             // Verify: Execption thrown is being logged
             LoggerMock.Verify(logger => logger.LogWarning(exception.Message, ""));
-        }
-
-        [Test]
-        public void Execute_WithValidData_ExecuteCommand()
-        {
-            // Given: A valid data
-            Mock<GameCommand> gameCommandMock = new Mock<GameCommand>();
-            CommandData commandData = new CommandData(
-                gameCommandMock.Object,
-                new List<string>()
-            );
-            CommandParserMock.Setup(parser => parser.ParseCurrentCommand())
-                .Returns(commandData);
-
-            // When: Execute is called
-            CommandExecutor.Execute();
-
-            // Verify: That the command is being executed
-            gameCommandMock.Verify(command => command.Execute(new List<string>()), Times.Once);
         }
     }
 }
